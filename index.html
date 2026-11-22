@@ -411,11 +411,16 @@
 
 
 <style>
-  /* ===== GRADE DE 9 PLATAFORMAS (ESTILO CYBER GALAXY PRO) ===== */
+  /* ===== GRADE DE 9 PLATAFORMAS (ESTILO CYBER GALAXY PRO + DESTAQUE) ===== */
   @keyframes rgbFlow {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  @keyframes goldPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(255, 215, 0, 0.55), 0 10px 25px rgba(0, 0, 0, 0.6); }
+    50%      { box-shadow: 0 0 28px rgba(255, 215, 0, 0.95), 0 10px 25px rgba(0, 0, 0, 0.6); }
   }
 
   @keyframes barPulse {
@@ -460,6 +465,14 @@
     cursor: default;
   }
 
+  /* Moldura Especial da Plataforma em Destaque */
+  .plat9-card.is-destaque {
+    padding: 2px;
+    background: linear-gradient(135deg, #fff3a1, #ffd700, #ff8c00, #ffd700, #fff3a1);
+    background-size: 200% 200%;
+    animation: rgbFlow 3s ease infinite, goldPulse 2.4s ease-in-out infinite;
+  }
+
   /* Corpo interno de vidro transparente */
   .plat9-inner {
     position: relative;
@@ -476,6 +489,10 @@
     overflow: hidden;
   }
 
+  .plat9-card.is-destaque .plat9-inner {
+    background: linear-gradient(170deg, rgba(42, 32, 14, 0.85) 0%, rgba(12, 10, 22, 0.92) 100%);
+  }
+
   /* Brilho radial suave no fundo da logo */
   .plat9-inner::before {
     content: "";
@@ -488,6 +505,27 @@
     background: radial-gradient(circle, rgba(255, 215, 0, 0.14) 0%, rgba(120, 60, 255, 0.08) 45%, transparent 72%);
     pointer-events: none;
     z-index: 0;
+  }
+
+  .plat9-card.is-destaque .plat9-inner::before {
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.32) 0%, rgba(255, 140, 0, 0.14) 50%, transparent 75%);
+  }
+
+  /* Selo de Destaque */
+  .plat9-crown {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 4;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #ffd700, #ff9900);
+    color: #140d00;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
   }
 
   /* Área da Logo (GitHub) */
@@ -510,7 +548,6 @@
     pointer-events: none;
   }
 
-  /* Placeholder caso a foto ainda não tenha sido subida no GitHub */
   .plat9-fallback {
     display: none;
     flex-direction: column;
@@ -546,7 +583,6 @@
     justify-content: center;
   }
 
-  /* Preenchimento interno */
   .plat9-bar-fill {
     position: absolute;
     top: 0;
@@ -558,7 +594,6 @@
     z-index: 1;
   }
 
-  /* Feixe de luz passando dentro da barra */
   .plat9-bar-fill::before {
     content: "";
     position: absolute;
@@ -570,7 +605,6 @@
     animation: barPulse 2.8s ease-in-out infinite;
   }
 
-  /* Reflexo superior vítreo */
   .plat9-bar-fill::after {
     content: "";
     position: absolute;
@@ -581,7 +615,6 @@
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
   }
 
-  /* Cores Neon Vibrantes */
   .fill-verde {
     background: linear-gradient(90deg, #009640 0%, #00e676 65%, #69f0ae 100%);
     box-shadow: 0 0 14px rgba(0, 230, 118, 0.65);
@@ -597,7 +630,6 @@
     box-shadow: 0 0 14px rgba(255, 23, 68, 0.65);
   }
 
-  /* Número da Porcentagem */
   .plat9-bar-num {
     position: relative;
     z-index: 3;
@@ -609,7 +641,6 @@
     text-shadow: 0 1px 3px #000000, 0 0 6px rgba(0, 0, 0, 0.95);
   }
 
-  /* Ajustes Milimétricos para 3 Colunas no Celular */
   @media (max-width: 600px) {
     .plat9-card {
       border-radius: 14px;
@@ -617,6 +648,12 @@
     .plat9-inner {
       border-radius: 12.5px;
       padding: 8px 4px 4px;
+    }
+    .plat9-crown {
+      top: 4px;
+      right: 4px;
+      padding: 1.5px 5px;
+      font-size: 7.5px;
     }
     .plat9-top {
       height: 76px;
@@ -645,21 +682,20 @@
 
 <script>
   (function() {
-    // LISTA DAS 9 PLATAFORMAS (Coloque os arquivos PNG na pasta img/ do GitHub)
-    const plataformas = 
-  { id: "01", img: "plataformma1.png" },
-  { id: "02", img: "plataformma2.png" },
-  { id: "03", img: "plataforma3.png" },
-  { id: "04", img: "plataforma4.png" },
-  { id: "05", img: "plataforma5.png" },
-  { id: "06", img: "plataforma6.png" },
-  { id: "07", img: "plataforma7.png" },
-  { id: "08", img: "plataforma8.png" },
-  { id: "09", img: "plataforma9.png" }
-];
+    // 3 primeiras com dois "m" (plataformma) e as demais com um "m"
+    const plataformas = [
+      { id: "01", img: "plataformma1.png" },
+      { id: "02", img: "plataformma2.png" },
+      { id: "03", img: "plataformma3.png" },
+      { id: "04", img: "plataforma4.png" },
+      { id: "05", img: "plataforma5.png" },
+      { id: "06", img: "plataforma6.png" },
+      { id: "07", img: "plataforma7.png" },
+      { id: "08", img: "plataforma8.png" },
+      { id: "09", img: "plataforma9.png" }
+    ];
 
-
-    const TEMPO_ATUALIZACAO = 30 * 60 * 1000; // Atualiza a cada 30 minutos
+    const TEMPO_ATUALIZACAO = 30 * 60 * 1000;
     let ultimoSlot = -1;
 
     function geradorFixo(seed) {
@@ -681,21 +717,36 @@
       ultimoSlot = slotAtual;
 
       const rand = geradorFixo(slotAtual * 98765);
+
+      // Calcula todas as porcentagens primeiro para identificar a maior (Destaque)
+      const dados = plataformas.map((plat) => {
+        const pct = Math.floor(35 + rand() * 63);
+        return { ...plat, pct };
+      });
+
+      let indiceDestaque = 0;
+      for (let i = 1; i < dados.length; i++) {
+        if (dados[i].pct > dados[indiceDestaque].pct) {
+          indiceDestaque = i;
+        }
+      }
+
       let html = "";
 
-      plataformas.forEach((plat) => {
-        const pct = Math.floor(35 + rand() * 63);
-
+      dados.forEach((plat, idx) => {
+        const ehDestaque = idx === indiceDestaque;
         let classeCor = "fill-amarelo";
-        if (pct >= 75) {
+
+        if (plat.pct >= 75) {
           classeCor = "fill-verde";
-        } else if (pct < 50) {
+        } else if (plat.pct < 50) {
           classeCor = "fill-vermelho";
         }
 
         html += `
-          <div class="plat9-card">
+          <div class="plat9-card ${ehDestaque ? 'is-destaque' : ''}">
             <div class="plat9-inner">
+              ${ehDestaque ? '<span class="plat9-crown">🔥 TOP</span>' : ''}
               <div class="plat9-top">
                 <img src="${plat.img}" alt="Plataforma ${plat.id}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="plat9-fallback">
@@ -706,8 +757,8 @@
                 </div>
               </div>
               <div class="plat9-bar">
-                <div class="plat9-bar-fill ${classeCor}" style="width: ${pct}%"></div>
-                <span class="plat9-bar-num">${pct}%</span>
+                <div class="plat9-bar-fill ${classeCor}" style="width: ${plat.pct}%"></div>
+                <span class="plat9-bar-num">${plat.pct}%</span>
               </div>
             </div>
           </div>
@@ -717,10 +768,15 @@
       container.innerHTML = html;
     }
 
-    renderizarPlataformas();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderizarPlataformas);
+    } else {
+      renderizarPlataformas();
+    }
     setInterval(renderizarPlataformas, 15000);
   })();
 </script>
+
 
 
 
