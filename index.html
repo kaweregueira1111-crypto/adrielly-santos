@@ -411,7 +411,7 @@
 
 
 <style>
-  /* ===== GRADE DE 9 PLATAFORMAS (3 COLUNAS FIXAS + PÍLULA VIBRANTE) ===== */
+  /* ===== GRADE DE 9 PLATAFORMAS (DESIGN SLIM PROFISSIONAL) ===== */
   .plat9-section {
     width: 100%;
     max-width: 960px;
@@ -432,7 +432,7 @@
       padding: 0 6px;
     }
     .plat9-grid {
-      gap: 8px;
+      gap: 7px;
     }
   }
 
@@ -441,133 +441,141 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 10, 18, 0.35) 100%);
+    justify-content: space-between;
+    border-radius: 18px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 12, 20, 0.42) 100%);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1.5px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
-    padding: 10px 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 10px 6px 6px;
     overflow: hidden;
     user-select: none;
     cursor: default;
   }
 
-  /* Linha dourada sutil no topo do card */
+  /* Filete dourado sutil no topo */
   .plat9-card::before {
     content: "";
     position: absolute;
     top: 0;
-    left: 18%;
-    right: 18%;
-    height: 1.5px;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.7), transparent);
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.65), transparent);
     z-index: 3;
   }
 
-  /* Área da Logo (Via GitHub) */
+  /* Área da Logo (Puxada do GitHub) */
   .plat9-top {
     position: relative;
-    height: 118px;
+    height: 112px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
-    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.12) 0%, transparent 72%);
+    padding: 0 6px;
+    margin-bottom: 8px;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.10) 0%, transparent 72%);
   }
 
   .plat9-top img {
-    width: 92%;
-    height: 96px;
+    width: 94%;
+    height: 92px;
     object-fit: contain;
-    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
     pointer-events: none;
   }
 
-  /* Pílula de Porcentagem (Estilo Cápsula Vibrante) */
-  .plat9-pill {
+  /* Barra de Porcentagem Slim (Fina, Larga e Quase Encostada na Borda) */
+  .plat9-bar {
     position: relative;
     width: 100%;
-    height: 34px;
-    border-radius: 999px;
-    background: rgba(15, 18, 28, 0.72);
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.3);
+    height: 22px;
+    border-radius: 12px;
+    background: rgba(8, 10, 16, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.8);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* Preenchimento colorido da barra */
-  .plat9-pill-fill {
+  /* Preenchimento interno da barra */
+  .plat9-bar-fill {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    border-radius: 999px;
-    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 11px;
+    transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 1;
   }
 
-  /* Brilho vítreo na metade superior da barra */
-  .plat9-pill-fill::after {
+  /* Filete de luz na ponta da barra de progresso */
+  .plat9-bar-fill::after {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    height: 48%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.05) 100%);
-    border-radius: 999px 999px 0 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 8px #ffffff;
   }
 
-  /* Cores Vibrantes de Alta Qualidade */
+  /* Cores Profissionais de Alto Contraste */
   .fill-verde {
-    background: linear-gradient(90deg, #00c853 0%, #00e676 55%, #69f0ae 100%);
-    box-shadow: 0 0 16px rgba(0, 230, 118, 0.55);
+    background: linear-gradient(90deg, #059669 0%, #10b981 60%, #34d399 100%);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
   }
 
   .fill-amarelo {
-    background: linear-gradient(90deg, #ff9100 0%, #ffc400 55%, #ffe57f 100%);
-    box-shadow: 0 0 16px rgba(255, 196, 0, 0.55);
+    background: linear-gradient(90deg, #d97706 0%, #f59e0b 60%, #fbbf24 100%);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
   }
 
   .fill-vermelho {
-    background: linear-gradient(90deg, #d50000 0%, #ff1744 55%, #ff8a80 100%);
-    box-shadow: 0 0 16px rgba(255, 23, 68, 0.55);
+    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 60%, #f87171 100%);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
   }
 
-  /* Número Centralizado em Destaque */
-  .plat9-pill-num {
+  /* Número Centralizado Nítido */
+  .plat9-bar-num {
     position: relative;
     z-index: 2;
-    font-size: 16px;
-    font-weight: 900;
+    font-size: 12px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
     color: #ffffff;
-    letter-spacing: 0.4px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.9);
   }
 
-  /* Ajustes de Tamanho para 3 Colunas no Celular */
+  /* Ajustes Milimétricos para 3 Colunas no Celular */
   @media (max-width: 600px) {
     .plat9-card {
-      border-radius: 16px;
-      padding: 7px 7px 9px;
+      border-radius: 14px;
+      padding: 8px 4px 4px;
     }
     .plat9-top {
-      height: 82px;
-      margin-bottom: 7px;
+      height: 78px;
+      padding: 0 4px;
+      margin-bottom: 6px;
     }
     .plat9-top img {
-      width: 94%;
-      height: 68px;
+      width: 95%;
+      height: 66px;
     }
-    .plat9-pill {
-      height: 26px;
+    .plat9-bar {
+      height: 18px;
+      border-radius: 10px;
     }
-    .plat9-pill-num {
-      font-size: 13px;
+    .plat9-bar-fill {
+      border-radius: 9px;
+    }
+    .plat9-bar-num {
+      font-size: 10.5px;
     }
   }
 </style>
@@ -616,8 +624,8 @@
       let html = "";
 
       plataformas.forEach((plat) => {
-        // Gera porcentagem entre 22% e 96%
-        const pct = Math.floor(22 + rand() * 75);
+        // Gera porcentagem entre 25% e 96%
+        const pct = Math.floor(25 + rand() * 72);
 
         let classeCor = "fill-amarelo";
         if (pct >= 75) {
@@ -631,9 +639,9 @@
             <div class="plat9-top">
               <img src="${plat.img}" alt="Plataforma ${plat.id}">
             </div>
-            <div class="plat9-pill">
-              <div class="plat9-pill-fill ${classeCor}" style="width: ${pct}%"></div>
-              <span class="plat9-pill-num">${pct}%</span>
+            <div class="plat9-bar">
+              <div class="plat9-bar-fill ${classeCor}" style="width: ${pct}%"></div>
+              <span class="plat9-bar-num">${pct}%</span>
             </div>
           </div>
         `;
@@ -646,6 +654,7 @@
     setInterval(renderizarPlataformas, 15000);
   })();
 </script>
+
 
 
 <style>
