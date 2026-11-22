@@ -411,11 +411,22 @@
 
 
 <style>
-  /* ===== GRADE DE 9 PLATAFORMAS (DESIGN SLIM PROFISSIONAL) ===== */
+  /* ===== GRADE DE 9 PLATAFORMAS (ESTILO CYBER GALAXY PRO) ===== */
+  @keyframes rgbFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes barPulse {
+    0%   { transform: translateX(-120%) skewX(-20deg); }
+    60%, 100% { transform: translateX(320%) skewX(-20deg); }
+  }
+
   .plat9-section {
     width: 100%;
     max-width: 960px;
-    margin: 24px auto;
+    margin: 26px auto;
     padding: 0 8px;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -432,135 +443,183 @@
       padding: 0 6px;
     }
     .plat9-grid {
-      gap: 7px;
+      gap: 8px;
     }
   }
 
-  /* Card Individual Transparente */
+  /* Moldura externa com borda neon RGB animada */
   .plat9-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     border-radius: 18px;
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 12, 20, 0.42) 100%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    padding: 10px 6px 6px;
-    overflow: hidden;
+    padding: 1.5px;
+    background: linear-gradient(125deg, #ffd700, #00f0ff, #ff007f, #7000ff, #00ff88, #ffd700);
+    background-size: 300% 300%;
+    animation: rgbFlow 7s ease infinite;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
     user-select: none;
     cursor: default;
   }
 
-  /* Filete dourado sutil no topo */
-  .plat9-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.65), transparent);
-    z-index: 3;
+  /* Corpo interno de vidro transparente */
+  .plat9-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 16.5px;
+    background: linear-gradient(170deg, rgba(18, 16, 36, 0.78) 0%, rgba(8, 7, 18, 0.88) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 10px 6px 6px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
-  /* Área da Logo (Puxada do GitHub) */
+  /* Brilho radial suave no fundo da logo */
+  .plat9-inner::before {
+    content: "";
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%;
+    height: 75%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.14) 0%, rgba(120, 60, 255, 0.08) 45%, transparent 72%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Área da Logo (GitHub) */
   .plat9-top {
     position: relative;
-    height: 112px;
+    z-index: 1;
+    height: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 6px;
+    padding: 0 4px;
     margin-bottom: 8px;
-    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.10) 0%, transparent 72%);
   }
 
   .plat9-top img {
     width: 94%;
     height: 92px;
     object-fit: contain;
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
     pointer-events: none;
   }
 
-  /* Barra de Porcentagem Slim (Fina, Larga e Quase Encostada na Borda) */
+  /* Placeholder caso a foto ainda não tenha sido subida no GitHub */
+  .plat9-fallback {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .plat9-fallback svg {
+    width: 26px;
+    height: 26px;
+    stroke: rgba(255, 215, 0, 0.55);
+  }
+
+  /* Barra de Porcentagem Slim Cyber-Glow */
   .plat9-bar {
     position: relative;
+    z-index: 2;
     width: 100%;
-    height: 22px;
-    border-radius: 12px;
-    background: rgba(8, 10, 16, 0.82);
+    height: 21px;
+    border-radius: 10px;
+    background: rgba(5, 5, 12, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* Preenchimento interno da barra */
+  /* Preenchimento interno */
   .plat9-bar-fill {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    border-radius: 11px;
-    transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 9px;
+    transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
     z-index: 1;
   }
 
-  /* Filete de luz na ponta da barra de progresso */
+  /* Feixe de luz passando dentro da barra */
+  .plat9-bar-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    animation: barPulse 2.8s ease-in-out infinite;
+  }
+
+  /* Reflexo superior vítreo */
   .plat9-bar-fill::after {
     content: "";
     position: absolute;
     top: 0;
+    left: 0;
     right: 0;
-    bottom: 0;
-    width: 3px;
-    background: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 0 8px #ffffff;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
   }
 
-  /* Cores Profissionais de Alto Contraste */
+  /* Cores Neon Vibrantes */
   .fill-verde {
-    background: linear-gradient(90deg, #059669 0%, #10b981 60%, #34d399 100%);
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    background: linear-gradient(90deg, #009640 0%, #00e676 65%, #69f0ae 100%);
+    box-shadow: 0 0 14px rgba(0, 230, 118, 0.65);
   }
 
   .fill-amarelo {
-    background: linear-gradient(90deg, #d97706 0%, #f59e0b 60%, #fbbf24 100%);
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+    background: linear-gradient(90deg, #e65100 0%, #ffb300 65%, #ffe57f 100%);
+    box-shadow: 0 0 14px rgba(255, 179, 0, 0.65);
   }
 
   .fill-vermelho {
-    background: linear-gradient(90deg, #b91c1c 0%, #ef4444 60%, #f87171 100%);
-    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+    background: linear-gradient(90deg, #990000 0%, #ff1744 65%, #ff8a80 100%);
+    box-shadow: 0 0 14px rgba(255, 23, 68, 0.65);
   }
 
-  /* Número Centralizado Nítido */
+  /* Número da Porcentagem */
   .plat9-bar-num {
     position: relative;
-    z-index: 2;
-    font-size: 12px;
-    font-weight: 800;
+    z-index: 3;
+    font-size: 11.5px;
+    font-weight: 900;
     font-variant-numeric: tabular-nums;
     color: #ffffff;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.6px;
+    text-shadow: 0 1px 3px #000000, 0 0 6px rgba(0, 0, 0, 0.95);
   }
 
   /* Ajustes Milimétricos para 3 Colunas no Celular */
   @media (max-width: 600px) {
     .plat9-card {
       border-radius: 14px;
+    }
+    .plat9-inner {
+      border-radius: 12.5px;
       padding: 8px 4px 4px;
     }
     .plat9-top {
-      height: 78px;
-      padding: 0 4px;
+      height: 76px;
       margin-bottom: 6px;
     }
     .plat9-top img {
@@ -568,14 +627,14 @@
       height: 66px;
     }
     .plat9-bar {
-      height: 18px;
-      border-radius: 10px;
+      height: 17px;
+      border-radius: 8px;
     }
     .plat9-bar-fill {
-      border-radius: 9px;
+      border-radius: 7px;
     }
     .plat9-bar-num {
-      font-size: 10.5px;
+      font-size: 10px;
     }
   }
 </style>
@@ -586,17 +645,17 @@
 
 <script>
   (function() {
-    // LISTA DAS 9 PLATAFORMAS (Imagens puxadas direto da pasta img/ do GitHub)
+    // LISTA DAS 9 PLATAFORMAS (Coloque os arquivos PNG na pasta img/ do GitHub)
     const plataformas = [
-      { id: 1, img: "img/plataforma1.png" },
-      { id: 2, img: "img/plataforma2.png" },
-      { id: 3, img: "img/plataforma3.png" },
-      { id: 4, img: "img/plataforma4.png" },
-      { id: 5, img: "img/plataforma5.png" },
-      { id: 6, img: "img/plataforma6.png" },
-      { id: 7, img: "img/plataforma7.png" },
-      { id: 8, img: "img/plataforma8.png" },
-      { id: 9, img: "img/plataforma9.png" }
+      { id: "01", img: "img/plataforma1.png" },
+      { id: "02", img: "img/plataforma2.png" },
+      { id: "03", img: "img/plataforma3.png" },
+      { id: "04", img: "img/plataforma4.png" },
+      { id: "05", img: "img/plataforma5.png" },
+      { id: "06", img: "img/plataforma6.png" },
+      { id: "07", img: "img/plataforma7.png" },
+      { id: "08", img: "img/plataforma8.png" },
+      { id: "09", img: "img/plataforma9.png" }
     ];
 
     const TEMPO_ATUALIZACAO = 30 * 60 * 1000; // Atualiza a cada 30 minutos
@@ -624,24 +683,31 @@
       let html = "";
 
       plataformas.forEach((plat) => {
-        // Gera porcentagem entre 25% e 96%
-        const pct = Math.floor(25 + rand() * 72);
+        const pct = Math.floor(35 + rand() * 63);
 
         let classeCor = "fill-amarelo";
         if (pct >= 75) {
           classeCor = "fill-verde";
-        } else if (pct < 45) {
+        } else if (pct < 50) {
           classeCor = "fill-vermelho";
         }
 
         html += `
           <div class="plat9-card">
-            <div class="plat9-top">
-              <img src="${plat.img}" alt="Plataforma ${plat.id}">
-            </div>
-            <div class="plat9-bar">
-              <div class="plat9-bar-fill ${classeCor}" style="width: ${pct}%"></div>
-              <span class="plat9-bar-num">${pct}%</span>
+            <div class="plat9-inner">
+              <div class="plat9-top">
+                <img src="${plat.img}" alt="Plataforma ${plat.id}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="plat9-fallback">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  <span>PLAT ${plat.id}</span>
+                </div>
+              </div>
+              <div class="plat9-bar">
+                <div class="plat9-bar-fill ${classeCor}" style="width: ${pct}%"></div>
+                <span class="plat9-bar-num">${pct}%</span>
+              </div>
             </div>
           </div>
         `;
