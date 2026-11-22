@@ -1284,6 +1284,33 @@ still?frame(0):requestAnimationFrame(frame);
   });
 })();
 </script>
+<script>
+(function(){
+  // Procura o modal de "Dúvidas Frequentes" e tira ele de dentro das caixas que travam a tela
+  const todosElementos = document.querySelectorAll('div, section, aside');
+  for (let i = 0; i < todosElementos.length; i++) {
+    const el = todosElementos[i];
+    if (el.textContent.includes('Dúvidas Frequentes') && el.children.length > 0) {
+      // Sobe até o container externo do modal (overlay escuro)
+      let modal = el;
+      while (modal.parentElement && modal.parentElement !== document.body) {
+        const estilo = window.getComputedStyle(modal);
+        if (estilo.position === 'fixed' || estilo.position === 'absolute') {
+          break;
+        }
+        modal = modal.parentElement;
+      }
+      if (modal && modal !== document.body) {
+        document.body.appendChild(modal);
+        modal.style.position = 'fixed';
+        modal.style.inset = '0';
+        modal.style.zIndex = '999999';
+      }
+      break;
+    }
+  }
+})();
+</script>
 
 
 
