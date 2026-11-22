@@ -409,8 +409,304 @@
     </a>
   </div>
 
-</div>
 
+<style>
+  /* ===== GRADE DE 9 PLATAFORMAS (3 COLUNAS FIXAS NO CELULAR E PC) ===== */
+  .plat9-section {
+    width: 100%;
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 8px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .plat9-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  /* Ajuste de espaçamento para telas de celular */
+  @media (max-width: 600px) {
+    .plat9-section {
+      padding: 0 6px;
+    }
+    .plat9-grid {
+      gap: 7px;
+    }
+  }
+
+  /* Card Individual */
+  .plat9-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 10, 15, 0.35) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    overflow: hidden;
+    user-select: none;
+    cursor: default;
+  }
+
+  /* Brilho dourado sutil na borda superior */
+  .plat9-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.65), transparent);
+    z-index: 3;
+  }
+
+  /* Topo do Card (Logo da Plataforma via GitHub) */
+  .plat9-top {
+    position: relative;
+    height: 120px;
+    padding: 16px 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.11) 0%, transparent 72%);
+  }
+
+  .plat9-badge {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 99px;
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .plat9-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 6px #22c55e;
+  }
+
+  .plat9-top img {
+    width: 92%;
+    height: 88px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+  }
+
+  /* Quadro de Porcentagens Colado Abaixo da Imagem */
+  .plat9-stats {
+    padding: 10px 10px 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .plat9-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .plat9-pct {
+    font-size: 12.5px;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+  }
+
+  /* Cores dinâmicas das porcentagens */
+  .pct-alta { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.35); }
+  .pct-media { color: #facc15; text-shadow: 0 0 10px rgba(250, 204, 21, 0.35); }
+  .pct-baixa { color: #f87171; }
+
+  /* Barra de Progresso */
+  .plat9-bar-bg {
+    width: 100%;
+    height: 6px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .plat9-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  .fill-alta { background: linear-gradient(90deg, #16a34a, #4ade80); }
+  .fill-media { background: linear-gradient(90deg, #ca8a04, #facc15); }
+  .fill-baixa { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+  /* Detalhes extras abaixo da barra */
+  .plat9-sub {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.62);
+    padding-top: 1px;
+  }
+
+  .plat9-sub b {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  /* Proporção otimizada para 3 colunas no celular */
+  @media (max-width: 600px) {
+    .plat9-card {
+      border-radius: 14px;
+    }
+    .plat9-top {
+      height: 86px;
+      padding: 14px 5px 5px;
+    }
+    .plat9-top img {
+      width: 94%;
+      height: 64px;
+    }
+    .plat9-badge {
+      top: 5px;
+      left: 5px;
+      padding: 1.5px 5px;
+      font-size: 7.5px;
+      gap: 3px;
+    }
+    .plat9-dot {
+      width: 4px;
+      height: 4px;
+    }
+    .plat9-stats {
+      padding: 7px 6px 8px;
+      gap: 4px;
+    }
+    .plat9-row {
+      font-size: 8px;
+    }
+    .plat9-pct {
+      font-size: 10.5px;
+    }
+    .plat9-bar-bg {
+      height: 5px;
+    }
+    .plat9-sub {
+      font-size: 8px;
+    }
+  }
+</style>
+
+<section class="plat9-section">
+  <div class="plat9-grid" id="plat9Grid"></div>
+</section>
+
+<script>
+  (function() {
+    // LISTA DAS 9 PLATAFORMAS (Imagens puxadas direto da pasta img/ do GitHub)
+    const plataformas = [
+      { id: "#01", img: "img/plataforma1.png" },
+      { id: "#02", img: "img/plataforma2.png" },
+      { id: "#03", img: "img/plataforma3.png" },
+      { id: "#04", img: "img/plataforma4.png" },
+      { id: "#05", img: "img/plataforma5.png" },
+      { id: "#06", img: "img/plataforma6.png" },
+      { id: "#07", img: "img/plataforma7.png" },
+      { id: "#08", img: "img/plataforma8.png" },
+      { id: "#09", img: "img/plataforma9.png" }
+    ];
+
+    const TEMPO_ATUALIZACAO = 30 * 60 * 1000; // Atualiza a cada 30 minutos
+    let ultimoSlot = -1;
+
+    function geradorFixo(seed) {
+      return function() {
+        seed |= 0;
+        seed = seed + 0x6D2B79F5 | 0;
+        let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function renderizarPlataformas() {
+      const container = document.getElementById("plat9Grid");
+      if (!container) return;
+
+      const slotAtual = Math.floor(Date.now() / TEMPO_ATUALIZACAO);
+      if (slotAtual === ultimoSlot) return;
+      ultimoSlot = slotAtual;
+
+      const rand = geradorFixo(slotAtual * 98765);
+      let html = "";
+
+      plataformas.forEach((plat) => {
+        const pct = Math.floor(48 + rand() * 50);
+        const min = Math.floor(10 + rand() * 20);
+        const max = Math.floor(40 + rand() * 45);
+
+        let classeCor = "pct-media";
+        let classeBarra = "fill-media";
+
+        if (pct >= 78) {
+          classeCor = "pct-alta";
+          classeBarra = "fill-alta";
+        } else if (pct < 60) {
+          classeCor = "pct-baixa";
+          classeBarra = "fill-baixa";
+        }
+
+        html += `
+          <div class="plat9-card">
+            <div class="plat9-top">
+              <span class="plat9-badge"><span class="plat9-dot"></span> ${plat.id}</span>
+              <img src="${plat.img}" alt="Plataforma ${plat.id}">
+            </div>
+            <div class="plat9-stats">
+              <div class="plat9-row">
+                <span>PAGAMENTO</span>
+                <span class="plat9-pct ${classeCor}">${pct}%</span>
+              </div>
+              <div class="plat9-bar-bg">
+                <div class="plat9-bar-fill ${classeBarra}" style="width: ${pct}%"></div>
+              </div>
+              <div class="plat9-sub">
+                <span>Mín: <b>${min}x</b></span>
+                <span>Máx: <b>${max}x</b></span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    renderizarPlataformas();
+    setInterval(renderizarPlataformas, 15000);
+  })();
+</script>
+
+<style>
     /* ===== CARD CTA SPACE-X PRO ===== */
     .spx-cta{
       position:relative;width:100%;margin-top:26px;padding:15px 14px;border-radius:18px;
