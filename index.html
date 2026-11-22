@@ -411,57 +411,42 @@
 
 
 <style>
-@keyframes rgbFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes goldPulse{0%,100%{box-shadow:0 0 18px rgba(255,215,0,.5),0 12px 28px rgba(0,0,0,.65)}50%{box-shadow:0 0 32px rgba(255,215,0,.9),0 12px 28px rgba(0,0,0,.65)}}
-@keyframes barPulse{0%{transform:translateX(-120%) skewX(-20deg)}60%,100%{transform:translateX(320%) skewX(-20deg)}}
-.plat9-section{width:100%;max-width:960px;margin:26px auto;padding:0 8px;box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif}
-.plat9-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.plat9-card{position:relative;border-radius:18px;padding:1.5px;background:linear-gradient(125deg,#ffd700,#00f0ff,#ff007f,#7000ff,#00ff88,#ffd700);background-size:300% 300%;animation:rgbFlow 7s ease infinite;box-shadow:0 10px 25px rgba(0,0,0,.55);user-select:none;cursor:default}
-.plat9-card.is-destaque{grid-column:1 / -1;padding:2px;border-radius:20px;background:linear-gradient(135deg,#fff5a8,#ffd700,#ff7b00,#ffd700,#fff5a8);background-size:200% 200%;animation:rgbFlow 3s ease infinite,goldPulse 2.4s ease-in-out infinite;margin-bottom:4px}
-.plat9-inner{position:relative;display:flex;flex-direction:column;justify-content:space-between;height:100%;border-radius:16.5px;background:linear-gradient(170deg,rgba(18,16,36,.85) 0%,rgba(8,7,18,.94) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:4px;box-sizing:border-box;overflow:hidden}
-.plat9-card.is-destaque .plat9-inner{border-radius:18px;padding:5px;background:linear-gradient(170deg,rgba(45,32,10,.9) 0%,rgba(12,10,22,.96) 100%)}
-.plat9-badges{position:absolute;top:10px;left:10px;right:10px;z-index:4;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
-.plat9-badge-destaque{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;background:linear-gradient(90deg,#ffd700,#ff9900);color:#140d00;font-size:10.5px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;box-shadow:0 3px 10px rgba(0,0,0,.75)}
-.plat9-badge-hot{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;background:linear-gradient(90deg,#ff1744,#ff5252);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:.7px;text-transform:uppercase;box-shadow:0 3px 12px rgba(255,23,68,.65)}
-.plat9-top{position:relative;z-index:1;width:100%;height:145px;border-radius:13px;overflow:hidden;margin-bottom:5px;background:rgba(0,0,0,.4)}
-.plat9-card.is-destaque .plat9-top{height:195px;border-radius:14px;margin-bottom:6px}
-.plat9-top img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none}
-.plat9-fallback{display:none;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:rgba(255,255,255,.45);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
-.plat9-fallback svg{width:26px;height:26px;stroke:rgba(255,215,0,.55)}
-.plat9-bar{position:relative;z-index:2;width:100%;height:22px;border-radius:11px;background:rgba(5,5,12,.94);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 2px 5px rgba(0,0,0,.9);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.plat9-card.is-destaque .plat9-bar{height:26px;border-radius:12px}
-.plat9-bar-fill{position:absolute;top:0;left:0;bottom:0;border-radius:10px;transition:width .7s cubic-bezier(.22,1,.36,1);overflow:hidden;z-index:1}
-.plat9-bar-fill::before{content:"";position:absolute;top:0;left:0;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:barPulse 2.8s ease-in-out infinite}
-.plat9-bar-fill::after{content:"";position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent)}
-.fill-verde{background:linear-gradient(90deg,#009640 0%,#00e676 65%,#69f0ae 100%);box-shadow:0 0 14px rgba(0,230,118,.65)}
-.fill-amarelo{background:linear-gradient(90deg,#e65100 0%,#ffb300 65%,#ffe57f 100%);box-shadow:0 0 14px rgba(255,179,0,.65)}
-.fill-vermelho{background:linear-gradient(90deg,#990000 0%,#ff1744 65%,#ff8a80 100%);box-shadow:0 0 14px rgba(255,23,68,.65)}
-.plat9-bar-num{position:relative;z-index:3;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:.6px;text-shadow:0 1px 3px #000,0 0 6px rgba(0,0,0,.95)}
-.plat9-card.is-destaque .plat9-bar-num{font-size:13.5px}
+@keyframes borderPrism{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes sleekGlint{0%{transform:translateX(-150%) skewX(-25deg)}55%,100%{transform:translateX(350%) skewX(-25deg)}}
+.p9-wrap{width:100%;max-width:960px;margin:24px auto;padding:0 8px;box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif}
+.p9-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.p9-item{position:relative;border-radius:16px;padding:1px;background:linear-gradient(135deg,rgba(255,215,0,.75),rgba(0,229,255,.65),rgba(255,64,129,.65),rgba(179,136,255,.75),rgba(255,215,0,.75));background-size:300% 300%;animation:borderPrism 8s ease infinite;box-shadow:0 8px 22px rgba(0,0,0,.45);user-select:none;cursor:default}
+.p9-box{position:relative;display:flex;flex-direction:column;height:100%;border-radius:15px;background:rgba(12,11,24,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:3px;box-sizing:border-box;overflow:hidden}
+.p9-photo{position:relative;width:100%;height:142px;border-radius:12px 12px 8px 8px;overflow:hidden;background:rgba(0,0,0,.35)}
+.p9-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none}
+.p9-photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 14px rgba(0,0,0,.45);pointer-events:none}
+.p9-miss{display:none;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:rgba(255,255,255,.45);font-size:10px;font-weight:700;letter-spacing:.6px}
+.p9-miss svg{width:24px;height:24px;stroke:rgba(255,215,0,.55)}
+.p9-meter{position:relative;width:100%;height:22px;margin-top:3px;border-radius:6px 6px 12px 12px;background:rgba(8,8,16,.78);border-top:1px solid rgba(255,255,255,.12);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.p9-fill{position:absolute;top:0;left:0;bottom:0;border-radius:5px 0 0 11px;transition:width .7s cubic-bezier(.22,1,.36,1);overflow:hidden;z-index:1}
+.p9-fill::before{content:"";position:absolute;top:0;left:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sleekGlint 3.2s ease-in-out infinite}
+.p9-fill::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,.55)}
+.c-alta{background:linear-gradient(90deg,rgba(0,168,89,.88) 0%,rgba(0,230,118,.95) 100%)}
+.c-media{background:linear-gradient(90deg,rgba(230,126,0,.88) 0%,rgba(255,196,0,.95) 100%)}
+.c-baixa{background:linear-gradient(90deg,rgba(198,40,40,.88) 0%,rgba(255,82,82,.95) 100%)}
+.p9-val{position:relative;z-index:2;font-size:11.5px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.95)}
 @media (max-width:600px){
-  .plat9-section{padding:0 6px}
-  .plat9-grid{gap:7px}
-  .plat9-card{border-radius:14px}
-  .plat9-inner{border-radius:12.5px;padding:3px}
-  .plat9-card.is-destaque{border-radius:16px}
-  .plat9-card.is-destaque .plat9-inner{border-radius:14px;padding:4px}
-  .plat9-top{height:102px;border-radius:10px;margin-bottom:4px}
-  .plat9-card.is-destaque .plat9-top{height:155px;border-radius:11px;margin-bottom:5px}
-  .plat9-badges{top:8px;left:8px;right:8px}
-  .plat9-badge-destaque,.plat9-badge-hot{padding:3px 8px;font-size:9px}
-  .plat9-bar{height:18px;border-radius:9px}
-  .plat9-card.is-destaque .plat9-bar{height:22px;border-radius:10px}
-  .plat9-bar-fill{border-radius:8px}
-  .plat9-bar-num{font-size:10.5px}
-  .plat9-card.is-destaque .plat9-bar-num{font-size:12px}
+  .p9-wrap{padding:0 6px}
+  .p9-grid{gap:7px}
+  .p9-item{border-radius:13px}
+  .p9-box{border-radius:12px;padding:2.5px}
+  .p9-photo{height:100px;border-radius:9.5px 9.5px 6px 6px}
+  .p9-meter{height:18px;margin-top:2.5px;border-radius:5px 5px 9.5px 9.5px}
+  .p9-fill{border-radius:4px 0 0 9px}
+  .p9-val{font-size:10px}
 }
 </style>
 
-<section class="plat9-section"><div class="plat9-grid" id="plat9Grid"></div></section>
+<section class="p9-wrap"><div class="p9-grid" id="p9Grid"></div></section>
 
 <script>
 (function(){
-  const plataformas = [
+  const lista = [
     { id: "01", img: "plataformma1.png" },
     { id: "02", img: "plataformma2.png" },
     { id: "03", img: "plataformma3.png" },
@@ -472,34 +457,34 @@
     { id: "08", img: "plataforma8.png" },
     { id: "09", img: "plataforma9.png" }
   ];
-  const TEMPO = 30 * 60 * 1000;
-  let ultimoSlot = -1;
-  function gerador(seed){
+  const INTERVALO = 30 * 60 * 1000;
+  let ultimo = -1;
+  function rng(s){
     return function(){
-      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      s |= 0; s = s + 0x6D2B79F5 | 0;
+      let t = Math.imul(s ^ s >>> 15, 1 | s);
       t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
   }
-  function render(){
-    const el = document.getElementById("plat9Grid");
-    if(!el) return;
-    const slot = Math.floor(Date.now() / TEMPO);
-    if(slot === ultimoSlot) return;
-    ultimoSlot = slot;
-    const rand = gerador(slot * 98765);
-    const dados = plataformas.map(p => ({ ...p, pct: Math.floor(35 + rand() * 63) })).sort((a,b) => b.pct - a.pct);
-    el.innerHTML = dados.map((p, i) => {
-      const top = i === 0;
-      const cor = p.pct >= 75 ? "fill-verde" : (p.pct < 50 ? "fill-vermelho" : "fill-amarelo");
-      return `<div class="plat9-card ${top ? 'is-destaque' : ''}"><div class="plat9-inner">${top ? '<div class="plat9-badges"><span class="plat9-badge-destaque">👑 DESTAQUE</span><span class="plat9-badge-hot">🔥 HOT</span></div>' : ''}<div class="plat9-top"><img src="${p.img}" alt="Plataforma ${p.id}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="plat9-fallback"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>PLAT ${p.id}</span></div></div><div class="plat9-bar"><div class="plat9-bar-fill ${cor}" style="width:${p.pct}%"></div><span class="plat9-bar-num">${p.pct}%</span></div></div></div>`;
+  function montar(){
+    const grid = document.getElementById("p9Grid");
+    if(!grid) return;
+    const atual = Math.floor(Date.now() / INTERVALO);
+    if(atual === ultimo) return;
+    ultimo = atual;
+    const r = rng(atual * 54321);
+    grid.innerHTML = lista.map(p => {
+      const pct = Math.floor(38 + r() * 60);
+      const cls = pct >= 75 ? "c-alta" : (pct < 52 ? "c-baixa" : "c-media");
+      return `<div class="p9-item"><div class="p9-box"><div class="p9-photo"><img src="${p.img}" alt="Plataforma ${p.id}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="p9-miss"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>PLAT ${p.id}</span></div></div><div class="p9-meter"><div class="p9-fill ${cls}" style="width:${pct}%"></div><span class="p9-val">${pct}%</span></div></div></div>`;
     }).join("");
   }
-  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", render); } else { render(); }
-  setInterval(render, 15000);
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", montar); } else { montar(); }
+  setInterval(montar, 15000);
 })();
 </script>
+
 
 
 
