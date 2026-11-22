@@ -576,32 +576,48 @@
 @keyframes ctaSweep{0%{transform:translateX(-140%) skewX(-22deg)}55%,100%{transform:translateX(340%) skewX(-22deg)}}
 @keyframes liveBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.85)}}
 
-/* Espaço no final da página para a barra fixa não cobrir o último card */
-body{padding-bottom:95px!important}
+body{padding-bottom:130px!important}
 
 .dock-wrap{
   position:fixed;
   left:0;
   right:0;
-  bottom:0;
+  bottom:16px;
   z-index:99999;
-  padding:10px 14px;
-  background:rgba(12,12,18,.78);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border-top:1px solid rgba(255,255,255,.16);
-  box-shadow:0 -10px 30px rgba(0,0,0,.55);
+  padding:0 14px;
+  pointer-events:none;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   box-sizing:border-box;
+  /* Começa escondida na primeira tela */
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(30px);
+  transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1),visibility .35s ease;
+}
+
+/* Só fica visível quando entrar na segunda tela */
+.dock-wrap.is-visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
 
 .dock-bar{
-  max-width:620px;
+  pointer-events:auto;
+  max-width:540px;
   margin:0 auto;
+  padding:10px 12px 10px 18px;
+  border-radius:24px;
+  background:rgba(12,13,20,.78);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 18px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25);
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
+  box-sizing:border-box;
 }
 
 .dock-info{
@@ -634,6 +650,7 @@ body{padding-bottom:95px!important}
   height:15px;
   flex:none;
   color:#38bdf8;
+  filter:drop-shadow(0 0 6px rgba(56,189,248,.5));
 }
 
 .dock-sub{
@@ -658,15 +675,14 @@ body{padding-bottom:95px!important}
   animation:liveBlink 2s ease-in-out infinite;
 }
 
-/* Botão Universal Branco-Cristal (Combina com qualquer tema) */
 .dock-btn{
   position:relative;
   flex:none;
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:11px 20px;
-  border-radius:14px;
+  padding:12px 20px;
+  border-radius:16px;
   text-decoration:none;
   background:linear-gradient(180deg,#ffffff 0%,#e5e7eb 100%);
   color:#09090b;
@@ -675,7 +691,7 @@ body{padding-bottom:95px!important}
   letter-spacing:.5px;
   text-transform:uppercase;
   border:1px solid rgba(255,255,255,.9);
-  box-shadow:0 6px 18px rgba(0,0,0,.4),inset 0 1px 0 #ffffff;
+  box-shadow:0 8px 20px rgba(0,0,0,.4),inset 0 1px 0 #ffffff;
   overflow:hidden;
   transition:transform .18s ease;
 }
@@ -695,10 +711,11 @@ body{padding-bottom:95px!important}
 .dock-btn svg{width:14px;height:14px;stroke:currentColor}
 
 @media (max-width:480px){
-  .dock-wrap{padding:9px 12px}
+  .dock-wrap{bottom:12px;padding:0 10px}
+  .dock-bar{padding:9px 10px 9px 15px;border-radius:20px;gap:8px}
   .dock-name{font-size:13.5px}
   .dock-sub{font-size:10.5px}
-  .dock-btn{padding:10px 15px;border-radius:12px;font-size:11.5px;gap:6px}
+  .dock-btn{padding:10px 15px;border-radius:14px;font-size:11.5px;gap:6px}
 }
 </style>
 
@@ -730,9 +747,29 @@ body{padding-bottom:95px!important}
 <script>
 (function(){
   const dock = document.getElementById('dockFixed');
-  if(dock){ document.body.appendChild(dock); }
+  if(!dock) return;
+  document.body.appendChild(dock);
+
+  function checarTela(){
+    // Verifica se a grade de jogos ou plataformas já está visível na segunda tela
+    const alvo = document.getElementById('gamesGrid') || document.getElementById('p9Grid');
+    if(alvo){
+      const rect = alvo.getBoundingClientRect();
+      const visivel = alvo.offsetParent !== null && rect.height > 0;
+      if(visivel){
+        dock.classList.add('is-visible');
+      } else {
+        dock.classList.remove('is-visible');
+      }
+    }
+  }
+
+  // Monitora a troca de telas em tempo real
+  setInterval(checarTela, 250);
+  checarTela();
 })();
 </script>
+
 
 
 
