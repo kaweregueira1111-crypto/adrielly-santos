@@ -1264,6 +1264,27 @@ still?frame(0):requestAnimationFrame(frame);
   </div>
 </div>
 
+  <style>
+  /* Garante que qualquer modal/aviso de ajuda abra centralizado na tela */
+  #helpModal, .help-modal, .modal-overlay, [id*="help"], [class*="help-modal"] {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+</style>
+
+<script>
+(function(){
+  // Procura a janela de ajuda e move ela para fora das caixas travadas
+  const possiveisModais = document.querySelectorAll('#helpModal, .help-modal, .modal-overlay, [id*="help" i][class*="modal" i]');
+  possiveisModais.forEach(function(el){
+    document.body.appendChild(el);
+  });
+})();
+</script>
+
 
 
 </body>
