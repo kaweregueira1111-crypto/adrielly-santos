@@ -422,7 +422,8 @@
 .p9-photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 14px rgba(0,0,0,.45);pointer-events:none}
 .p9-miss{display:none;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:rgba(255,255,255,.45);font-size:10px;font-weight:700;letter-spacing:.6px}
 .p9-miss svg{width:24px;height:24px;stroke:rgba(255,215,0,.55)}
-.p9-meter{position:relative;width:100%;height:22px;margin-top:3px;border-radius:6px 6px 12px 12px;background:rgba(8,8,16,.78);border-top:1px solid rgba(255,255,255,.12);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.p9-title{width:100%;padding:5px 4px 4px;text-align:center;font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.2px;text-shadow:0 1px 3px rgba(0,0,0,.85);box-sizing:border-box}
+.p9-meter{position:relative;width:100%;height:22px;border-radius:6px 6px 12px 12px;background:rgba(8,8,16,.78);border-top:1px solid rgba(255,255,255,.12);overflow:hidden;display:flex;align-items:center;justify-content:center}
 .p9-fill{position:absolute;top:0;left:0;bottom:0;border-radius:5px 0 0 11px;transition:width .7s cubic-bezier(.22,1,.36,1);overflow:hidden;z-index:1}
 .p9-fill::before{content:"";position:absolute;top:0;left:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sleekGlint 3.2s ease-in-out infinite}
 .p9-fill::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,.55)}
@@ -436,7 +437,8 @@
   .p9-item{border-radius:13px}
   .p9-box{border-radius:12px;padding:2.5px}
   .p9-photo{height:100px;border-radius:9.5px 9.5px 6px 6px}
-  .p9-meter{height:18px;margin-top:2.5px;border-radius:5px 5px 9.5px 9.5px}
+  .p9-title{padding:4px 3px 3px;font-size:10.5px}
+  .p9-meter{height:18px;border-radius:5px 5px 9.5px 9.5px}
   .p9-fill{border-radius:4px 0 0 9px}
   .p9-val{font-size:10px}
 }
@@ -447,15 +449,15 @@
 <script>
 (function(){
   const lista = [
-    { id: "01", img: "plataformma1.png" },
-    { id: "02", img: "plataformma2.png" },
-    { id: "03", img: "plataformma3.png" },
-    { id: "04", img: "plataforma4.png" },
-    { id: "05", img: "plataforma5.png" },
-    { id: "06", img: "plataforma6.png" },
-    { id: "07", img: "plataforma7.png" },
-    { id: "08", img: "plataforma8.png" },
-    { id: "09", img: "plataforma9.png" }
+    { id: "01", nome: "Fortune Tiger", img: "plataformma1.png" },
+    { id: "02", nome: "Fortune Rabbit", img: "plataformma2.png" },
+    { id: "03", nome: "Fortune Ox", img: "plataformma3.png" },
+    { id: "04", nome: "Fortune Mouse", img: "plataforma4.png" },
+    { id: "05", nome: "Dragon Hatch", img: "plataforma5.png" },
+    { id: "06", nome: "Dragon Tiger Luck", img: "plataforma6.png" },
+    { id: "07", nome: "Shaolin Soccer", img: "plataforma7.png" },
+    { id: "08", nome: "Double Fortune", img: "plataforma8.png" },
+    { id: "09", nome: "Ganesha Gold", img: "plataforma9.png" }
   ];
   const INTERVALO = 30 * 60 * 1000;
   let ultimo = -1;
@@ -477,7 +479,7 @@
     grid.innerHTML = lista.map(p => {
       const pct = Math.floor(38 + r() * 60);
       const cls = pct >= 75 ? "c-alta" : (pct < 52 ? "c-baixa" : "c-media");
-      return `<div class="p9-item"><div class="p9-box"><div class="p9-photo"><img src="${p.img}" alt="Plataforma ${p.id}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="p9-miss"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>PLAT ${p.id}</span></div></div><div class="p9-meter"><div class="p9-fill ${cls}" style="width:${pct}%"></div><span class="p9-val">${pct}%</span></div></div></div>`;
+      return `<div class="p9-item"><div class="p9-box"><div class="p9-photo"><img src="${p.img}" alt="${p.nome}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="p9-miss"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>PLAT ${p.id}</span></div></div><div class="p9-title">${p.nome}</div><div class="p9-meter"><div class="p9-fill ${cls}" style="width:${pct}%"></div><span class="p9-val">${pct}%</span></div></div></div>`;
     }).join("");
   }
   if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", montar); } else { montar(); }
